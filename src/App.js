@@ -27,9 +27,17 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 import Updates from "./Tabs/Updates";
+import Emergency from "./Tabs/Emergency";
+import Submit from "./Tabs/Submit";
+import Search from "./Tabs/Search";
+import Profile from "./Tabs/Profile";
 
 import {
   		globe,
+  		search,
+  		personCircle,
+  		create,
+  		alert,
   	} from "ionicons/icons";
 
 /* Theme variables */
@@ -43,12 +51,33 @@ const App = () => (
         <Route path="/"
                 render={() => <Redirect to="/updates" />}
                 exact={true} />
-        <Route path="/Updates" component={Updates} />
+        	    <Route path="/Updates" component={Updates} />
+			        <Route path="/Emergency" component={Emergency} />
+              <Route path="/submit" component={Submit} />
+              <Route path="/search" component={Search} />
+              <Route path="/profile" component={Profile} />
+              <Route component={() => <Redirect to="/news" />} />
        </IonRouterOutlet>
            <IonTabBar slot="bottom">
               <IonTabButton tab="updates" href="/updates"><IonIcon icon={globe} />
               <IonLabel>Updates</IonLabel>
               </IonTabButton>
+              <IonTabButton tab="Emergency" href="/emergency">
+                <IonIcon icon={alert} />
+                <IonLabel>Emergency</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="submit" href="/submit">
+                <IonIcon icon={create} />
+                <IonLabel>Submit</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="search" href="/search">
+                <IonIcon icon={search} />
+                <IonLabel>Search</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="profile" href="/profile">
+                <IonIcon icon={personCircle} />
+                <IonLabel>Profile</IonLabel>
+              </IonTabButton>              
            </IonTabBar>   
      </IonTabs>
     </IonReactRouter>
