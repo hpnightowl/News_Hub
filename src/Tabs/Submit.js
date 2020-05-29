@@ -11,7 +11,7 @@ const Submit = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Submit</IonTitle>
+          <IonTitle>Add</IonTitle>
         </IonToolbar>
       </IonHeader>
     </IonPage>

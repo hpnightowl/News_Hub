@@ -26,18 +26,17 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-import Updates from "./Tabs/Updates";
-import Emergency from "./Tabs/Emergency";
+import Bookmark from "./Tabs/Bookmark";
 import Submit from "./Tabs/Submit";
 import Search from "./Tabs/Search";
 import Profile from "./Tabs/Profile";
 
 import {
-  		globe,
   		search,
   		personCircle,
   		create,
-  		alert,
+  		addCircle,
+  		library,
   	} from "ionicons/icons";
 
 /* Theme variables */
@@ -49,26 +48,22 @@ const App = () => (
     <IonTabs>
        <IonRouterOutlet>
         <Route path="/"
-                render={() => <Redirect to="/updates" />}
+                render={() => <Redirect to="/Bookmark" />}
                 exact={true} />
-        	    <Route path="/Updates" component={Updates} />
-			        <Route path="/Emergency" component={Emergency} />
+              <Route path="/Bookmark" component={Bookmark} />
               <Route path="/submit" component={Submit} />
               <Route path="/search" component={Search} />
               <Route path="/profile" component={Profile} />
               <Route component={() => <Redirect to="/news" />} />
        </IonRouterOutlet>
            <IonTabBar slot="bottom">
-              <IonTabButton tab="updates" href="/updates"><IonIcon icon={globe} />
-              <IonLabel>Updates</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="Emergency" href="/emergency">
-                <IonIcon icon={alert} />
-                <IonLabel>Emergency</IonLabel>
+              <IonTabButton tab="Bookmark" href="/Bookmark">
+              <IonIcon icon={library} />
+              <IonLabel>Bookmark</IonLabel>
               </IonTabButton>
               <IonTabButton tab="submit" href="/submit">
-                <IonIcon icon={create} />
-                <IonLabel>Submit</IonLabel>
+                <IonIcon icon={addCircle} />
+                <IonLabel>Add</IonLabel>
               </IonTabButton>
               <IonTabButton tab="search" href="/search">
                 <IonIcon icon={search} />

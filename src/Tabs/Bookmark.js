@@ -11,7 +11,7 @@ const Updates = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Nearby-Updates</IonTitle>
+          <IonTitle>NEWS</IonTitle>
         </IonToolbar>
       </IonHeader>
     </IonPage>
