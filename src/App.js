@@ -30,7 +30,10 @@ import Bookmark from "./Tabs/Bookmark";
 import Submit from "./Tabs/Submit";
 import Search from "./Tabs/Search";
 import Profile from "./Tabs/Profile";
-
+import Login from "./Auth/Login";
+import Signup from "./Auth/Signup";
+import Forgot from "./Auth/Forget";
+import EditProfile from "./Auth/EditProfile";
 import {
   		search,
   		personCircle,
@@ -54,6 +57,10 @@ const App = () => (
               <Route path="/submit" component={Submit} />
               <Route path="/search" component={Search} />
               <Route path="/profile" component={Profile} />
+              <Route path="/edit-profile" component={EditProfile} />
+              <Route path="/register" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forget" component={Forget} />
               <Route component={() => <Redirect to="/news" />} />
        </IonRouterOutlet>
            <IonTabBar slot="bottom">
