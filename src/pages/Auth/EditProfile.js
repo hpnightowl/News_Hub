@@ -1,20 +1,21 @@
 import React from "react";
+import UserContext from "../../contexts/UserContext";
+import useForm from "../../hooks/useForm";
+import { toast } from "../../helpers/toast";
 import {
   IonPage,
+  IonLoading,
   IonContent,
-  IonRow,
-  IonCol,
-  IonButton,
   IonItem,
   IonLabel,
   IonInput,
-  IonLoading,
+  IonRow,
+  IonCol,
+  IonButton,
 } from "@ionic/react";
+import NavHeader from "../../components/Header/NavHeader";
 import firebase from "../../firebase";
-import useForm from "../../hooks/useForm";
 import validateEditProfile from "../../validators/validateEditProfile";
-import UserContext from "../../contexts/UserContext";
-import { toast } from "../../helpers/toast";
 
 const EditProfile = (props) => {
   const { user, setUser } = React.useContext(UserContext);
@@ -30,7 +31,7 @@ const EditProfile = (props) => {
     setValues,
     values,
     isSubmitting,
-  } = useForm(INITIAL_STATE, validateEditProfile, authenticateUser);
+  } = useForm(INITIAL_STATE, validateEditProfile, authenticateuser);
   const [busy, setBusy] = React.useState(false);
 
   async function reauthenticate(email, password) {
@@ -57,7 +58,7 @@ const EditProfile = (props) => {
     }
   }
 
-  async function authenticateUser() {
+  async function authenticateuser() {
     setBusy(true);
     const { name, email, currentPassword, newPassword } = values;
     try {
@@ -85,6 +86,7 @@ const EditProfile = (props) => {
 
   return (
     <IonPage>
+      <NavHeader title="Edit Profile" />
       <IonLoading message={"Please wait..."} isOpen={busy} />
       <IonContent>
         <IonItem lines="full">
@@ -116,6 +118,7 @@ const EditProfile = (props) => {
             type="password"
             value={values.newPassword}
             onIonChange={handleChange}
+            required
           ></IonInput>
         </IonItem>
 

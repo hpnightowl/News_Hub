@@ -1,13 +1,8 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "society_hub",
+  "appName": "Newsy",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
   "cordova": {}
 }

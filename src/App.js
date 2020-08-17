@@ -1,76 +1,85 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 import {
+  IonApp,
+  IonRouterOutlet,
   IonTabs,
   IonTabBar,
   IonTabButton,
   IonIcon,
   IonLabel,
 } from "@ionic/react";
-
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
-import Bookmark from "./Tabs/Bookmark";
+import { IonReactRouter } from "@ionic/react-router";
+import {
+  library,
+  search,
+  personCircle,
+  create,
+  addCircle,
+} from "ionicons/icons";
+import Bookies from "./Tabs/Bookies";
 import Submit from "./Tabs/Submit";
 import Search from "./Tabs/Search";
 import Profile from "./Tabs/Profile";
-import Login from "./Auth/Login";
-import Signup from "./Auth/Signup";
-import Forgot from "./Auth/Forget";
-import EditProfile from "./Auth/EditProfile";
-import {
-  		search,
-  		personCircle,
-  		create,
-  		addCircle,
-  		library,
-  	} from "ionicons/icons";
+import EditProfile from "./pages/Auth/EditProfile";
+import Signup from "./pages/Auth/Signup";
+import Login from "./pages/Auth/Login";
+import Forgot from "./pages/Auth/Forgot";
+import Link from "./pages/Link";
+import useAuth from "./hooks/useAuth";
+import UserContext from "./contexts/UserContext";
+
+/* Core CSS required for Ionic components to work properly */
+import "@ionic/react/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/typography.css";
+
+/* Optional CSS utils that can be commented out */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import './theme/variables.css';
+import "./theme/variables.css";
 
-const App = () => (
-  <IonApp>
-    <IonReactRouter>
-    <IonTabs>
-       <IonRouterOutlet>
-        <Route path="/"
-                render={() => <Redirect to="/Bookmark" />}
-                exact={true} />
-              <Route path="/Bookmark" component={Bookmark} />
+const App = () => {
+  const [user, setUser] = useAuth();
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <UserContext.Provider value={{ user, setUser }}>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route
+                path="/"
+                render={() => <Redirect to="/Bookies" />}
+                exact={true}
+              />
+              <Route path="/Bookies" component={Bookies} />
               <Route path="/submit" component={Submit} />
               <Route path="/search" component={Search} />
               <Route path="/profile" component={Profile} />
               <Route path="/edit-profile" component={EditProfile} />
               <Route path="/register" component={Signup} />
               <Route path="/login" component={Login} />
-              <Route path="/forget" component={Forget} />
+              <Route path="/forgot" component={Forgot} />
+              <Route path="/link/:linkId" component={Link} />
               <Route component={() => <Redirect to="/news" />} />
-       </IonRouterOutlet>
-           <IonTabBar slot="bottom">
-              <IonTabButton tab="Bookmark" href="/Bookmark">
-              <IonIcon icon={library} />
-              <IonLabel>Bookmark</IonLabel>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="Bookies" href="/Bookies">                <IonIcon icon={library} />
+                <IonLabel>Bookies</IonLabel>
               </IonTabButton>
               <IonTabButton tab="submit" href="/submit">
-                <IonIcon icon={addCircle} />
-                <IonLabel>Add</IonLabel>
+                <IonIcon icon={create} />
+                <IonLabel>Submit</IonLabel>
               </IonTabButton>
               <IonTabButton tab="search" href="/search">
                 <IonIcon icon={search} />
@@ -79,11 +88,13 @@ const App = () => (
               <IonTabButton tab="profile" href="/profile">
                 <IonIcon icon={personCircle} />
                 <IonLabel>Profile</IonLabel>
-              </IonTabButton>              
-           </IonTabBar>   
-     </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </UserContext.Provider>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;

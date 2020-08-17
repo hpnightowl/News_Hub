@@ -18,7 +18,7 @@ class Firebase {
       password
     );
     return newUser.user.updateProfile({
-      displayName: name
+      displayName: name,
     });
   }
 
