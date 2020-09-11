@@ -29,11 +29,14 @@ jobs:
       - name: Install app dependencies
         run: npm install
 
-      - name: Add Android platform
-        run: ionic cordova platform add android@latest
+      - name: build the app
+        run: npm run build
 
-      - name: Build Android APK
-        run: ionic cordova build android
+      - name: Add to android
+        run: npx cap add android
+        
+      - name: sync with source
+        run: npx cap sync
 
       - name: Generate the Android App Bundle
         working-directory: ./platforms/android/
