@@ -31,10 +31,13 @@ jobs:
 
       - name: build the app
         run: npm run build
-
+    
+      - name: remove existing folder if there 
+        run: rm -rf ./platforms/android
+        
       - name: Add to android
         run: npx cap add android
-        
+  
       - name: sync with source
         run: npx cap sync
 
