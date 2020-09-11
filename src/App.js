@@ -14,7 +14,6 @@ import {
   library,
   search,
   personCircle,
-  create,
   addCircle,
 } from "ionicons/icons";
 import Bookies from "./Tabs/Bookies";
@@ -78,7 +77,7 @@ const App = () => {
                 <IonLabel>Bookies</IonLabel>
               </IonTabButton>
               <IonTabButton tab="submit" href="/submit">
-                <IonIcon icon={create} />
+                <IonIcon icon={addCircle} />
                 <IonLabel>Submit</IonLabel>
               </IonTabButton>
               <IonTabButton tab="search" href="/search">
