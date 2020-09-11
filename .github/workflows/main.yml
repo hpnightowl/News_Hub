@@ -33,7 +33,7 @@ jobs:
         run: npm run build
     
       - name: remove existing folder if there 
-        run: rm -rf ./platforms/android
+        run: rm -rf /home/runner/work/Bookie/Bookie/android
         
       - name: Add to android
         run: npx cap add android
